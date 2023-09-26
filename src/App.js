@@ -1,39 +1,36 @@
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
+  const [so, setSo] = useState();
 
-  const handlePayment = async () => {
+
+  useEffect(() => {
     const userAgent = navigator.userAgent
+
     if (/(android|iphone|ipad)/i.test(userAgent)) {
       if (/android/i.test(userAgent)) {
-        setTimeout(() => {
-          const androidURL =
-            'https://instagram.com/reels/?launch_app_store=1'
-          window.open(androidURL, '_blank')
-        }, 5000)
+        setSo('android')
+      } else if (/iphone|ipad/i.test(userAgent)) {
+        setSo('ios')
       }
+    } else {
+      setSo('escritorio')
     }
-  }
+  }, []);
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <a
           className="App-link"
-          href="https://instagram.com/reels/?launch_app_store=1"
+          href={so === 'android' ? "https://instagram.com/reels/?launch_app_store=1" : (so === 'ios' ? "https://apps.apple.com/app/instagram/id389801252" : "https://instagram.com")}
           target="_blank"
           rel="noopener noreferrer"
         >
-          Instagram href
+          Instagram
         </a>
-        <button onClick={handlePayment}>
-          Instagram window.open
-        </button>
+
       </header>
     </div>
   );
