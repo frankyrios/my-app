@@ -9,12 +9,12 @@ function App() {
 
     if (/(android|iphone|ipad)/i.test(userAgent)) {
       if (/android/i.test(userAgent)) {
-        setUrl('instagram.com/reels/?launch_app_store=1')
+        setUrl('https://instagram.com/reels/?launch_app_store=1')
       } else if (/iphone|ipad/i.test(userAgent)) {
-        setUrl('instagram.com/reels/?launch_app_store=1')
+        setUrl('https://instagram.com/reels/?launch_app_store=1')
       }
     } else {
-      setUrl('instagram.com/reels/?launch_app_store=1')
+      setUrl('https://instagram.com/reels/?launch_app_store=1')
     }
   }, []);
 
