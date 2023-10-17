@@ -1,35 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import './App.css';
+import React from "react";
+import "./App.css";
 
 function App() {
-  const [url, setUrl] = useState();
+  const handlePaymentNewCuentaBi = async () => {
+    payWithNewCuentaBi();
+  };
 
-  useEffect(() => {
-    const userAgent = navigator.userAgent
+  const payWithNewCuentaBi = async () => {
+    try {
+      const requestId = `requestId=123`;
 
-    if (/(android|iphone|ipad)/i.test(userAgent)) {
-      if (/android/i.test(userAgent)) {
-        setUrl('https://instagram.com/reels/?launch_app_store=1')
-      } else if (/iphone|ipad/i.test(userAgent)) {
-        setUrl('https://instagram.com/reels/?launch_app_store=1')
+      let url = "https://www.corporacionbi.com/gt/bancoindustrial/";
+      const domainDeeplink = "https://belappgt.bi.com.gt/";
+      const typeFonyou = "type=walletWeb";
+      const userAgent = navigator.userAgent;
+
+      if (/(android|iphone|ipad)/i.test(userAgent)) {
+        if (/android/i.test(userAgent)) {
+          const start = "fintech?";
+          const nameFonyou = "fintech_name=Claro";
+          const idFonyou = "fintech_id=fonyou";
+          const logoFonyou =
+            "fintech_logo=https://recargo.miclaro.com.gt/img/logo-claro.jpg";
+          const urlDeeplink = `${domainDeeplink}${start}${nameFonyou}&${idFonyou}&${logoFonyou}&${requestId}&${typeFonyou}`;
+          url = urlDeeplink;
+          await new Promise((resolve) => setTimeout(resolve, 5000));
+          window.location.href = url;
+        } else if (/iphone|ipad/i.test(userAgent)) {
+          const start = "fl?";
+          const nameFonyou = "appName=Claro";
+          const idFonyou = "appId=202104086749";
+          const logoFonyou =
+            "logoURL=https://recargo.miclaro.com.gt/img/logo-claro.jpg";
+          const urlDeeplink = `${domainDeeplink}${start}${nameFonyou}&${idFonyou}&${logoFonyou}&${requestId}&${typeFonyou}`;
+          url = urlDeeplink;
+          await new Promise((resolve) => setTimeout(resolve, 5000));
+          window.location.href = url;
+        }
       }
-    } else {
-      setUrl('https://instagram.com/reels/?launch_app_store=1')
+    } catch (error) {
+      console.error("Error en la solicitud HTTP:", error.message);
     }
-  }, []);
+  };
 
   return (
     <div className="App">
       <header className="App-header">
-        <a
-          className="App-link"
-          href={url}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          instagram
-        </a>
-
+        <button onClick={() => handlePaymentNewCuentaBi()}>Pagar N</button>
       </header>
     </div>
   );
