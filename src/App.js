@@ -2,10 +2,6 @@ import React from "react";
 import "./App.css";
 
 function App() {
-  const handlePaymentNewCuentaBi = async () => {
-    payWithNewCuentaBi();
-  };
-
   const payWithNewCuentaBi = async () => {
     try {
       const requestId = `requestId=123`;
@@ -33,7 +29,7 @@ function App() {
           const urlDeeplink = `${domainDeeplink}${start}${nameFonyou}&${idFonyou}&${logoFonyou}&${requestId}&${typeFonyou}`;
           url = urlDeeplink;
         }
-        await new Promise((resolve) => setTimeout(resolve, 5000));
+       // await new Promise((resolve) => setTimeout(resolve, 5000));
         window.open(url, "_blank");
       }
     } catch (error) {
@@ -44,7 +40,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <button onClick={() => handlePaymentNewCuentaBi()}>Pagar N</button>
+        <button onClick={payWithNewCuentaBi}>Pagar 11</button>
       </header>
     </div>
   );
