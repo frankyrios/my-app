@@ -24,14 +24,6 @@ function App() {
             "fintech_logo=https://recargo.miclaro.com.gt/img/logo-claro.jpg";
           const urlDeeplink = `${domainDeeplink}${start}${nameFonyou}&${idFonyou}&${logoFonyou}&${requestId}&${typeFonyou}`;
           url = urlDeeplink;
-          await new Promise((resolve) => setTimeout(resolve, 5000));
-          const link = document.createElement("a");
-          link.href = url;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-
-          document.body.appendChild(link);
-          link.click();
         } else if (/iphone|ipad/i.test(userAgent)) {
           const start = "fl?";
           const nameFonyou = "appName=Claro";
@@ -40,15 +32,9 @@ function App() {
             "logoURL=https://recargo.miclaro.com.gt/img/logo-claro.jpg";
           const urlDeeplink = `${domainDeeplink}${start}${nameFonyou}&${idFonyou}&${logoFonyou}&${requestId}&${typeFonyou}`;
           url = urlDeeplink;
-          await new Promise((resolve) => setTimeout(resolve, 5000));
-          const link = document.createElement("a");
-          link.href = url;
-          link.target = "_blank";
-          link.rel = "noopener noreferrer";
-
-          document.body.appendChild(link);
-          link.click();
         }
+        await new Promise((resolve) => setTimeout(resolve, 5000));
+        window.open(url, "_blank");
       }
     } catch (error) {
       console.error("Error en la solicitud HTTP:", error.message);
